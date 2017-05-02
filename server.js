@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.locals.folders = [
-  {hi: 'social'}
+  { id: 234234, name: 'social' }
 ]
 
 app.locals.urls = [
@@ -22,7 +22,7 @@ app.locals.urls = [
 app.post('/api/folders', (request, response) => {
   const { name } = request.body;
   const id = Date.now();
-  app.locals.folders.push({[id]:name})
+  app.locals.folders.push({ id, name })
   response.status(201).json({id, name})
 })
 
