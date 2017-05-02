@@ -28,8 +28,8 @@ app.post('/api/folders', (request, response) => {
 
 app.post('/api/urls', (request, response) => {
   const { longUrl, shortUrl, visits, date, name } = request.body;
-  app.locals.urls.push({longUrl, shortUrl, visits, date, name});
-  response.status(201).json({longUrl, shortUrl, visits, date, name});
+  app.locals.urls.push({ longUrl, shortUrl, visits, date, name });
+  response.status(201).json({ longUrl, shortUrl, visits, date, name });
 })
 
 app.get('/', (request, response) => {
