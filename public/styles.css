@@ -1,0 +1,51 @@
+body {
+  background-color: #007AA3;
+}
+
+input, button {
+  border: none;
+}
+
+.app-title {
+  text-align: center;
+}
+
+.url-section {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-bottom: 20px;
+  background-image: url('./images/header-bg.png');
+}
+
+.url-input {
+  height: 20px;
+  width: 50%;
+  margin-right: 10px;
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.folder-input, .save-btn {
+  margin-bottom: 20px;
+}
+
+.folder-input {
+  height: 20px;
+}
+
+.save-btn {
+  margin-right: 10px;
+}
+
+
+button {
+  background-color: #FF6640;
+  color: #F5FAFF;
+  height: 22px;
+}
