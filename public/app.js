@@ -46,7 +46,7 @@ const renderFolders = (folders) => {
 }
 
 const appendFolders = (folderName) => {
-  $('.folders').append(`<p>${folderName}</p>`);
+  $('.folders').append(`<p class="folder-name">${folderName}</p>`);
 }
 
 const renderLinks = (links) => {
@@ -55,7 +55,7 @@ const renderLinks = (links) => {
 
 const appendLinks = (linkCard) => {
   $('.link-list').append(`
-    <article>
+    <article class="link-cards">
       <a href="${linkCard.longUrl}">${linkCard.longUrl}</a>
       <a href="${linkCard.shortUrl}">${linkCard.shortUrl}</a>
       <p>${linkCard.visits}</p>
