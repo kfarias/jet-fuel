@@ -19,7 +19,9 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
-    "moment": "^2.18.1"
+    "knex": "^0.13.0",
+    "moment": "^2.18.1",
+    "pg": "^6.1.5"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
