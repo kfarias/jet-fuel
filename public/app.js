@@ -1,48 +1,37 @@
-$(() => {
-  fetch('/api/folders')
-  .then(response => response.json())
-  .then(data => renderFolders(data))
-
-  fetch('/api/urls')
-  .then(response => response.json())
-  .then(data => renderLinks(data))
+$(document).ready(() => {
+  getAllFolders();
 })
 
 $('.save-btn').on('click', function() {
   let $folderName = $('.folder-input').val();
-  fetch('/api/folders', {
+  fetch('/api/v1/folders', {
     'method': 'POST',
     'headers': {'Content-Type': 'application/json' },
-    'body': JSON.stringify({ name: $folderName })
+    'body': JSON.stringify({ title: $folderName })
   })
-  .then(response => {
-    if(!response.ok) {
-      console.log('error');
-    }
-    return response.json();
+  .then(response => response.json())
+  .then(data => {
+    getNewFolder($folderName, data.id);
+    appendOption($folderName);
   })
-  .then(data => appendFolders(data.name))
+  .catch(error => console.error('error: ', error))
 })
 
 $('.submit-btn').on('click', function(e) {
   e.preventDefault();
   let $url = $('.url-input').val();
-  fetch('/api/urls', {
+  fetch('/api/v1/urls', {
     'method': 'POST',
     'headers': {'Content-Type': 'application/json'},
-    'body': JSON.stringify({ longUrl: $url, shortUrl: '', date: Date.now(), visits: 0, name: 'All' })
+    'body': JSON.stringify({ longUrl: $url, shortUrl: '', date: Date.now(), visits: 0 })
   })
-  .then(response => {
-    if(!response.ok) {
-      console.log('error');
-    }
-    return response.json();
-  })
+  .then(response => response.json())
   .then(data => appendLinks(data))
+  .catch(error => console.error('error: ', error))
 })
 
 const renderFolders = (folders) => {
-  return folders.map(folder => appendFolders(folder.name));
+  return folders.map(folder => appendFolders(folder.title));
 }
 
 const appendFolders = (folderName) => {
@@ -61,4 +50,20 @@ const appendLinks = (linkCard) => {
       <p>${linkCard.visits}</p>
       <p>Date: ${linkCard.date}</p>
     </article>`)
+}
+
+const appendOption = (title) => {
+  $('.folder-options').append(`<option value="${title}">${title}</option>`)
+}
+
+const getAllFolders = () => {
+  fetch('/api/v1/folders')
+  .then(response => response.json())
+  .then(data => renderFolders(data))
+}
+
+const getNewFolder = (title, id) => {
+  fetch(`api/v1/folders/${id}`)
+  .then(response => response.json())
+  .then(data => appendFolders(title))
 }
