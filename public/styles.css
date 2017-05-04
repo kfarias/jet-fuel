@@ -8,6 +8,13 @@ input, button {
 
 .app-title {
   text-align: center;
+  color: #F5FAFF;
+  font-size: 49px;
+  padding-top: 10px;
+}
+
+.header-section {
+  background-image: url('./images/header-bg.png');
 }
 
 .url-section {
@@ -16,12 +23,11 @@ input, button {
   padding-top: 50px;
   padding-bottom: 50px;
   margin-bottom: 20px;
-  background-image: url('./images/header-bg.png');
 }
 
 .url-input {
-  height: 20px;
-  width: 50%;
+  height: 39px;
+  width: 273px;
   margin-right: 10px;
 }
 
@@ -31,21 +37,45 @@ input, button {
   flex-wrap: wrap;
 }
 
+.link-cards {
+  border: 1px solid black;
+  margin: 10px;
+  padding: 30px;
+  font-size: 20px;
+}
+
+.folder-name {
+  text-align: left;
+  font-size: 30px;
+  border-bottom: 1px solid black;
+}
+
 .folder-input, .save-btn {
   margin-bottom: 20px;
 }
 
 .folder-input {
-  height: 20px;
+  height: 39px;
+  width: 273px;
 }
 
 .save-btn {
   margin-right: 10px;
+  width: 60px;
 }
 
+.submit-btn {
+  width: 60px;
+}
+
+.sort-btn {
+  margin-left: 45px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
 button {
   background-color: #FF6640;
   color: #F5FAFF;
-  height: 22px;
+  height: 39px;
 }
