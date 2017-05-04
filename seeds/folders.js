@@ -10,7 +10,6 @@ exports.seed = function(knex, Promise) {
         .then(folder => {
           return knex('links').insert([
             { longUrl: 'http://www.amazon.com',
-              shortUrl: '',
               visits: 0,
               folder_id: folder[0]
             }
