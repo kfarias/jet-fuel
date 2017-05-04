@@ -5,19 +5,18 @@ exports.up = function(knex, Promise) {
       table.increments('id').primary();
       table.string('title');
 
-      table.timestamps();
+      table.timestamps(true, true);
     }),
 
     knex.schema.createTable('links', (table) => {
       table.increments('id').primary();
       table.string('longUrl');
-      table.string('shortUrl');
       table.integer('visits');
       table.integer('folder_id').unsigned();
       table.foreign('folder_id')
         .references('folders.id');
 
-      table.timestamps();
+      table.timestamps(true, true);
     })
   ])
 };
