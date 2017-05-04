@@ -60,10 +60,12 @@ const getAllFolders = () => {
   fetch('/api/v1/folders')
   .then(response => response.json())
   .then(data => renderFolders(data))
+  .catch(error => console.error('error: ', error))
 }
 
 const getNewFolder = (title, id) => {
   fetch(`api/v1/folders/${id}`)
   .then(response => response.json())
   .then(data => appendFolders(title))
+  .catch(error => console.error('error: ', error))
 }
