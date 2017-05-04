@@ -30,8 +30,11 @@ $('.submit-btn').on('click', function(e) {
   .catch(error => console.error('error: ', error))
 })
 
-const renderFolders = (folders) => {
-  return folders.map(folder => appendFolders(folder.title));
+const displayFolders = (folders) => {
+  return folders.map(folder => {
+    appendFolders(folder.title);
+    appendOption(folder.title);
+  });
 }
 
 const appendFolders = (folderName) => {
@@ -59,8 +62,12 @@ const appendOption = (title) => {
 const getAllFolders = () => {
   fetch('/api/v1/folders')
   .then(response => response.json())
-  .then(data => renderFolders(data))
-  .catch(error => console.error('error: ', error))
+  .then(data => {
+    displayFolders(data)
+  })
+  .catch(error => {
+    console.error('error: ', error)
+  })
 }
 
 const getNewFolder = (title, id) => {
