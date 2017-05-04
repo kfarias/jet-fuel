@@ -58,7 +58,7 @@ app.get('/jet.fuel/:id', (request, response) => {
   database('links').where('id', request.params.id).increment('visits', 1)
    .then(() => database('links').where('id', request.params.id).select())
    .then(links => {
-     response.redirect(`${links[0].longUrl}`);
+     response.redirect(`http://${links[0].longUrl}`);
    })
    .catch(error => console.error('error: ', error))
 })
