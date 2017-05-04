@@ -24,6 +24,16 @@ app.get('/api/v1/folders', (request, response) => {
   });
 })
 
+app.get('/api/v1/folders/:id', (request, response) => {
+  database('folders').where('id', request.params.id).select()
+    .then(folders => {
+      response.status(200).json(folders)
+    })
+    .catch(error => {
+      console.error('error: ', error);
+    })
+})
+
 app.get('/api/v1/links', (request, response) => {
   database('links').select()
     .then(links => {
