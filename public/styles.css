@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Akronim|Emblema+One|Galada|Keania+One|Knewave|Salsa|Sonsie+One');
+
 body {
-  background-color: #007AA3;
+  background-color: #f5faff;
 }
 
 input, button {
@@ -10,25 +12,58 @@ input, button {
   text-align: center;
   color: #F5FAFF;
   font-size: 49px;
-  padding-top: 10px;
+  font-family: 'Akronim';
+  font-family: 'Emblema One';
+  font-family: 'Galada';
+  padding-top: 25px;
+  text-shadow: 1px 1px 3px #333;
 }
 
 .header-section {
-  background-image: url('./images/header-bg.png');
+  background: url('./images/space.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .url-section {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  margin-bottom: 20px;
+  height: 35vh;
+}
+
+.url-wrap {
+  display: flex;
+  border: 2px solid #e17f34;
+  border-radius: 3px;
+  width: 75%;
+  margin: 0 auto;
 }
 
 .url-input {
-  height: 39px;
-  width: 273px;
-  margin-right: 10px;
+  padding: 10px 5px;
+  width: 85%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19);
+}
+
+.submit-btn {
+  width: 15%;
+  padding: 15px 10px;
+  background-color: #e17f34;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.folder-options {
+  display: block;
+  width: 75%;
+  height: 43px;
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #fff;
 }
 
 .main-content {
@@ -45,9 +80,11 @@ input, button {
 }
 
 .folder-name {
+  display: block;
   text-align: left;
   font-size: 30px;
   border-bottom: 1px solid black;
+  cursor: pointer;
 }
 
 .folder-input, .save-btn {
@@ -64,10 +101,6 @@ input, button {
   width: 60px;
 }
 
-.submit-btn {
-  width: 60px;
-}
-
 .sort-btn {
   margin-left: 45px;
   margin-top: 20px;
@@ -77,5 +110,4 @@ input, button {
 button {
   background-color: #FF6640;
   color: #F5FAFF;
-  height: 39px;
 }

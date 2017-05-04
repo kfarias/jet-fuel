@@ -1,5 +1,8 @@
 $(document).ready(() => {
   getAllFolders();
+  fetch('api/v1/links')
+  .then(response => response.json())
+  .then(data => renderLinks(data))
 })
 
 $('.save-btn').on('click', function() {
@@ -19,26 +22,42 @@ $('.save-btn').on('click', function() {
 
 $('.submit-btn').on('click', function(e) {
   e.preventDefault();
+  let folderID = $('option:selected').attr('id');
   let $url = $('.url-input').val();
-  fetch('/api/v1/urls', {
+  fetch('/api/v1/links', {
     'method': 'POST',
     'headers': {'Content-Type': 'application/json'},
-    'body': JSON.stringify({ longUrl: $url, shortUrl: '', date: Date.now(), visits: 0 })
+    'body': JSON.stringify({ longUrl: $url, shortUrl: '', folder_id: folderID, visits: 0 })
   })
   .then(response => response.json())
-  .then(data => appendLinks(data))
+  .then(data => data)
   .catch(error => console.error('error: ', error))
 })
 
+const getFolderLinks = (folderBtn, id) => {
+  folderBtn.on('click', () => {
+    fetch(`/api/v1/folders/${id}/links`)
+    .then(response => response.json())
+    .then(data => displayFolderLinks(data))
+  })
+}
+
+const displayFolderLinks = (links) => {
+  $('.link-list').children('.link-cards').remove()
+  renderLinks(links)
+}
+
 const displayFolders = (folders) => {
   return folders.map(folder => {
-    appendFolders(folder.title);
-    appendOption(folder.title);
+    appendFolders(folder.title, folder.id);
+    appendOption(folder.title, folder.id);
   });
 }
 
-const appendFolders = (folderName) => {
-  $('.folders').append(`<p class="folder-name">${folderName}</p>`);
+const appendFolders = (folderName, id) => {
+  const folderBtn = $(`<button class="folder-name">${folderName}</button>`)
+  $('.folders').append(folderBtn);
+  getFolderLinks(folderBtn, id)
 }
 
 const renderLinks = (links) => {
@@ -49,30 +68,25 @@ const appendLinks = (linkCard) => {
   $('.link-list').append(`
     <article class="link-cards">
       <a href="${linkCard.longUrl}">${linkCard.longUrl}</a>
-      <a href="${linkCard.shortUrl}">${linkCard.shortUrl}</a>
+      <a href="${linkCard.longUrl}">${linkCard.shortUrl}</a>
       <p>${linkCard.visits}</p>
-      <p>Date: ${linkCard.date}</p>
     </article>`)
 }
 
-const appendOption = (title) => {
-  $('.folder-options').append(`<option value="${title}">${title}</option>`)
+const appendOption = (title, id) => {
+  $('.folder-options').append(`<option id="${id}" value="${title}">${title}</option>`)
 }
 
 const getAllFolders = () => {
   fetch('/api/v1/folders')
   .then(response => response.json())
-  .then(data => {
-    displayFolders(data)
-  })
-  .catch(error => {
-    console.error('error: ', error)
-  })
+  .then(data => displayFolders(data))
+  .catch(error => console.error('error: ', error))
 }
 
 const getNewFolder = (title, id) => {
   fetch(`api/v1/folders/${id}`)
   .then(response => response.json())
-  .then(data => appendFolders(title))
+  .then(data => appendFolders(title, id))
   .catch(error => console.error('error: ', error))
 }
