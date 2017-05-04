@@ -27,7 +27,7 @@ $('.submit-btn').on('click', function(e) {
   fetch('/api/v1/links', {
     'method': 'POST',
     'headers': {'Content-Type': 'application/json'},
-    'body': JSON.stringify({ longUrl: $url, shortUrl: '', folder_id: folderID, visits: 0 })
+    'body': JSON.stringify({ longUrl: $url, folder_id: folderID, visits: 0 })
   })
   .then(response => response.json())
   .then(data => data)
@@ -65,11 +65,14 @@ const renderLinks = (links) => {
 }
 
 const appendLinks = (linkCard) => {
+  console.log(linkCard);
+  let createdAt = linkCard.created_at.slice(0, 10)
   $('.link-list').append(`
     <article class="link-cards">
       <a href="${linkCard.longUrl}">${linkCard.longUrl}</a>
-      <a href="${linkCard.longUrl}">${linkCard.shortUrl}</a>
-      <p>${linkCard.visits}</p>
+      <a href="/jet.fuel/${linkCard.id}" target="_blank">/jet.fuel/${linkCard.id}</a>
+      <p>Visits: ${linkCard.visits}</p>
+      <p>Created: ${createdAt}</p>
     </article>`)
 }
 
