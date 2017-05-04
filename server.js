@@ -54,6 +54,15 @@ app.get('/api/v1/folders/:id/links', (request, response) => {
     });
 })
 
+app.get('/jet.fuel/:id', (request, response) => {
+  database('links').where('id', request.params.id).increment('visits', 1)
+   .then(() => database('links').where('id', request.params.id).select())
+   .then(links => {
+     response.redirect(`${links[0].longUrl}`);
+   })
+   .catch(error => console.error('error: ', error))
+})
+
 app.post('/api/v1/folders', (request, response) => {
   const folder = request.body;
 
@@ -69,9 +78,9 @@ app.post('/api/v1/folders', (request, response) => {
 app.post('/api/v1/links', (request, response) => {
   const link = request.body;
 
-  database('links').insert(link, 'id')
+  database('links').insert(link, 'id', 'shortUrl')
     .then(link => {
-      response.status(201).json({id: link[0]})
+      response.status(201).json({ id: link[0] })
     })
     .catch(error => {
       console.error('error:', error);
