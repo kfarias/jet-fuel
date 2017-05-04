@@ -78,7 +78,7 @@ app.post('/api/v1/folders', (request, response) => {
 app.post('/api/v1/links', (request, response) => {
   const link = request.body;
 
-  database('links').insert(link, 'id', 'shortUrl')
+  database('links').insert(link, 'id')
     .then(link => {
       response.status(201).json({ id: link[0] })
     })
