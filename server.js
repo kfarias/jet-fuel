@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const fs = require('fs');
 const path = require('path');
 
-const environment = 'development';
+const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
 
