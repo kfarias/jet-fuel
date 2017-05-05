@@ -91,6 +91,7 @@ a:hover {
 .link-list {
   margin: 15px 0 0 0;
   background-color: rgba(21, 41, 78, 0.75);
+  height: 100vh;
 }
 
 .filter-options {
@@ -171,6 +172,7 @@ a:hover {
   padding: 10px 5px;
   background-color: #e17f34;
   color: #fff;
+  cursor: pointer;
   text-transform: uppercase;
 }
 
