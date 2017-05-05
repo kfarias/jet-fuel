@@ -1,6 +1,7 @@
+let currentFolder;
+
 $(document).ready(() => {
   getAllFolders();
-  getAllLinks();
 })
 
 $('.save-btn').on('click', function() {
@@ -30,10 +31,28 @@ $('.submit-btn').on('click', function(e) {
   .then(response => response.json())
   .then(data => data)
   .catch(error => console.error('error: ', error))
+  clearInput();
+})
+
+$('.popular-btn').on('click', function() {
+  let linkCards = $('.link-cards')
+  $('.link-list').children('.link-cards').remove()
+  fetch(`/api/v1/folders/${currentFolder}/links`)
+  .then(response => response.json())
+  .then(data => sortByVisits(data))
+})
+
+$('.sort-btn').on('click', function() {
+  let linkCards = $('.link-cards')
+  $('.link-list').children('.link-cards').remove()
+  fetch(`/api/v1/folders/${currentFolder}/links`)
+  .then(response => response.json())
+  .then(data => sortByDate(data))
 })
 
 const getFolderLinks = (folderBtn, id) => {
   folderBtn.on('click', () => {
+    currentFolder = id;
     fetch(`/api/v1/folders/${id}/links`)
     .then(response => response.json())
     .then(data => displayFolderLinks(data))
@@ -63,12 +82,11 @@ const renderLinks = (links) => {
 }
 
 const appendLinks = (linkCard) => {
-  console.log(linkCard);
   let createdAt = linkCard.created_at.slice(0, 10)
   $('.link-list').append(`
     <article class="link-cards">
+      <a class="short-url" href="/jet.fuel/${linkCard.id}" target="_blank">http://jet.fuel/${linkCard.id}</a>
       <a href="${linkCard.longUrl}">${linkCard.longUrl}</a>
-      <a href="/jet.fuel/${linkCard.id}" target="_blank">/jet.fuel/${linkCard.id}</a>
       <p>Visits: ${linkCard.visits}</p>
       <p>Created: ${createdAt}</p>
     </article>`)
@@ -76,6 +94,17 @@ const appendLinks = (linkCard) => {
 
 const appendOption = (title, id) => {
   $('.folder-options').append(`<option id="${id}" value="${title}">${title}</option>`)
+}
+
+const sortByVisits = (links) => {
+  let sorted = links.sort((a, b) => b.visits - a.visits);
+  renderLinks(sorted);
+}
+
+const sortByDate = (links) => {
+  let sorted = links.sort((a, b) => parseInt(a.created_at) - parseInt(b.created_at))
+  console.log(currentFolder);
+  renderLinks(sorted);
 }
 
 const getAllFolders = () => {
@@ -92,8 +121,9 @@ const getNewFolder = (title, id) => {
   .catch(error => console.error('error: ', error))
 }
 
-const getAllLinks = () => {
-  fetch('api/v1/links')
-  .then(response => response.json())
-  .then(data => renderLinks(data))
+const clearInput = () => {
+  $('.url-input').val('');
+  $('option:selected').prop('selected', function() {
+    return this.defaultSelected;
+  });
 }
