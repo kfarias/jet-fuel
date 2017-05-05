@@ -91,9 +91,13 @@ app.post('/api/v1/links', (request, response) => {
     .catch(error => {
       console.error('error:', error);
     });
-})
-
-app.listen(3000)
+});
 
 
-module.exports = app
+
+app.listen(app.get('port'), () => {
+  console.log('app is listening on port 3000');
+});
+
+
+module.exports = app;
