@@ -36,12 +36,10 @@ describe('API Routes', () => {
       chai.request(server)
       .get('/api/v1/folders')
       .end((err, response) => {
-        console.log(response.body);
         response.should.have.status(200)
         response.should.be.json
         response.body.should.be.a('array')
         response.body.length.should.equal(2)
-
         response.body[0].should.have.property('title')
         response.body[0].title.should.equal('Misc')
 
@@ -53,7 +51,6 @@ describe('API Routes', () => {
         chai.request(server)
         .get('/sad')
         .end((err, response) => {
-          console.log(response.body);
           response.should.have.status(404)
           done()
           })
@@ -67,7 +64,6 @@ describe('API Routes', () => {
           response.should.be.json
           response.body.should.be.a('array')
           response.body.length.should.equal(1)
-
           response.body[0].should.have.property('title')
           response.body[0].title.should.equal('Misc')
 
@@ -105,7 +101,6 @@ describe('API Routes', () => {
       .end((err, response) => {
         response.should.have.status(201)
         response.body.should.be.a('object')
-
         response.body.should.have.property('id')
         done()
           })
@@ -113,19 +108,17 @@ describe('API Routes', () => {
       })
     })
   })
-  
+
   describe('LINK Routes', () => {
     describe('GET /api/v1/links', () => {
       it('should return all of the links', (done) => {
         chai.request(server)
         .get('/api/v1/links')
         .end((err, response) => {
-          console.log(response.body);
           response.should.have.status(200)
           response.should.be.json
           response.body.should.be.a('array')
           response.body.length.should.equal(6)
-
           response.body[0].should.have.property('id')
           response.body[0].id.should.equal(1)
           response.body[0].should.have.property('longUrl')
@@ -143,11 +136,11 @@ describe('API Routes', () => {
           chai.request(server)
           .get('/sad')
           .end((err, response) => {
-            console.log(response.body);
             response.should.have.status(404)
             done()
             })
           })
+
     describe('POST /api/v1/links', () => {
       it('should create a new link', (done) => {
         chai.request(server)
@@ -160,13 +153,13 @@ describe('API Routes', () => {
         .end((err, response) => {
           response.should.have.status(201)
           response.body.should.be.a('object')
-
           done()
             })
           })
         })
       })
     })
+
     describe('Client Routes', () => {
       it('should return html', () => {
         chai.request(server)
