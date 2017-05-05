@@ -89,3 +89,5 @@ app.post('/api/v1/links', (request, response) => {
 })
 
 app.listen(3000)
+
+module.exports = app
