@@ -23,10 +23,23 @@ describe('server tests', () => {
   })
 
   describe('Client Routes', () => {
-    
+
   })
 
   describe('API Routes', () => {
-
+    describe('GET /api/v1/folders', () => {
+      it('should return all of the folders', (done) => {
+        chai.request(server)
+        .get('/api/v1/folders')
+        .end((err, response) => {
+          console.log(response.body);
+          response.should.have.status(200)
+          response.should.be.json
+          response.body.should.be.a('array')
+          response.body.length.should.equal(4)
+          done()
+        })
+      })
+    })
   })
 })
