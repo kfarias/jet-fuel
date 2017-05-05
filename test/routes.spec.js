@@ -79,12 +79,10 @@ describe('API Routes', () => {
         chai.request(server)
         .get('/api/v1/folders/1/links')
         .end((err, response) => {
-          console.log(response.body);
           response.should.have.status(200)
           response.should.be.json
           response.body.should.be.a('array')
           response.body.length.should.equal(3)
-
           response.body[0].should.have.property('id')
           response.body[0].id.should.equal(1)
           response.body[0].should.have.property('longUrl')
@@ -115,6 +113,7 @@ describe('API Routes', () => {
       })
     })
   })
+  
   describe('LINK Routes', () => {
     describe('GET /api/v1/links', () => {
       it('should return all of the links', (done) => {

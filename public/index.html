@@ -12,24 +12,26 @@
         <h1 class="app-title">Jet Fuel</h1>
         <div class="url-section">
           <div class="url-wrap">
-            <input class="url-input" type="text" placeholder="url" />
+            <input class="url-input" type="text" placeholder="www.example.com" />
             <button class="submit-btn">Submit</button>
           </div>
           <select class="folder-options">
-            <option value="select a folder">Select a folder</option>
+            <option value="select a folder" selected="selected">Select a folder</option>
           </select>
         </div>
       </form>
     </header>
     <section class="main-content">
       <aside class="folders">
-        <input class="folder-input" type="text" placeholder="Folder name"/>
-        <button class="save-btn">Save</button>
+        <div class="folder-wrap">
+          <input class="folder-input" type="text" placeholder="Create new folder"/>
+          <button class="save-btn">Save</button>
+        </div>
       </aside>
       <section class="link-list">
         <div class="filter-options">
           <button class="sort-btn">Sort by date</button>
-          <button class="popular-btn">Sort by +</button>
+          <button class="popular-btn">Sort by visits</button>
         </div>
       </section>
     </section>

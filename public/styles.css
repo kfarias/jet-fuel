@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Akronim|Emblema+One|Galada|Keania+One|Knewave|Salsa|Sonsie+One');
+@import url('https://fonts.googleapis.com/css?family=Galada|Open Sans');
 
 body {
   background-color: #f5faff;
@@ -8,12 +8,18 @@ input, button {
   border: none;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .app-title {
   text-align: center;
   color: #F5FAFF;
-  font-size: 49px;
-  font-family: 'Akronim';
-  font-family: 'Emblema One';
+  font-size: 50px;
   font-family: 'Galada';
   padding-top: 25px;
   text-shadow: 1px 1px 3px #333;
@@ -32,22 +38,29 @@ input, button {
   height: 35vh;
 }
 
-.url-wrap {
+.url-wrap,
+.folder-wrap {
   display: flex;
   border: 2px solid #e17f34;
   border-radius: 3px;
-  width: 75%;
+  width: 85%;
+  max-width: 600px;
   margin: 0 auto;
 }
 
 .url-input {
   padding: 10px 5px;
-  width: 85%;
+  width: 80%;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19);
 }
 
+::-webkit-input-placeholder {
+  color: #555;
+  font-size: 14px;
+}
+
 .submit-btn {
-  width: 15%;
+  width: 20%;
   padding: 15px 10px;
   background-color: #e17f34;
   color: #fff;
@@ -57,57 +70,122 @@ input, button {
 }
 
 .folder-options {
-  display: block;
-  width: 75%;
-  height: 43px;
   margin: 10px auto;
-  padding: 10px;
-  font-size: 16px;
+  padding: 10px 0;
+  width: 85%;
+  max-width: 600px;
+  height: 43px;
+  display: block;
   background-color: #fff;
+  border: 2px solid #e17f34;
+  color: #555;
+  font-size: 14px;
 }
 
 .main-content {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
 }
 
-.link-cards {
-  border: 1px solid black;
-  margin: 10px;
-  padding: 30px;
-  font-size: 20px;
+.link-list {
+  margin: 15px 0 0 0;
+  background-color: rgba(21, 41, 78, 0.75);
 }
 
-.folder-name {
-  display: block;
-  text-align: left;
-  font-size: 30px;
-  border-bottom: 1px solid black;
+.filter-options {
+  margin: 10px 0;
+  padding: 15px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  color: #F5FAFF;
   cursor: pointer;
 }
 
-.folder-input, .save-btn {
-  margin-bottom: 20px;
+.sort-btn,
+.popular-btn {
+  display: block;
+  margin: 0 10px;
+  background: transparent;
+  border: 2px solid #F5FAFF;
+  border-radius: 2px;
+  color: #F5FAFF;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.link-cards {
+  margin: 10px auto;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  background-color: #F5FAFF;
+  border-radius: 2px;
+  font-size: 16px;
+}
+
+.link-cards > * {
+  display: block;
+  padding: 10px;
+  color: #15294e;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.short-url {
+  background-color: #e17f34;
+  color: #F5FAFF;
+}
+
+.folders {
+  width: 85%;
+  margin: auto;
+}
+
+.folder-name {
+  width: 100%;
+  margin: 8px 3px;
+  padding: 5px 0;
+  display: block;
+  background-color: #e17f34;
+  border-radius: 2px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.folder-wrap {
+  margin: 15px auto;
+  width: 100%;
 }
 
 .folder-input {
-  height: 39px;
-  width: 273px;
+  margin: 0;
+  width: 80%;
+  padding: 10px 5px;
 }
 
 .save-btn {
-  margin-right: 10px;
-  width: 60px;
+  margin: 0;
+  width: 20%;
+  padding: 10px 5px;
+  background-color: #e17f34;
+  color: #fff;
+  text-transform: uppercase;
 }
 
-.sort-btn {
-  margin-left: 45px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
+@media screen and (min-width: 768px) {
+  .main-content {
+    flex-direction: row;
+  }
 
-button {
-  background-color: #FF6640;
-  color: #F5FAFF;
+  .folders {
+    width: 40%;
+    margin: 0 10px;
+  }
+
+  .link-list {
+    width: 60%;
+    margin: 0;
+  }
 }

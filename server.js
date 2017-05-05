@@ -10,7 +10,6 @@ const database = require('knex')(configuration);
 
 app.set('port', process.env.PORT || 3000)
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -89,5 +88,6 @@ app.post('/api/v1/links', (request, response) => {
 })
 
 app.listen(3000)
+
 
 module.exports = app
