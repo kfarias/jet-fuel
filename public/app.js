@@ -14,7 +14,7 @@ $('.save-btn').on('click', function() {
   .then(response => response.json())
   .then(data => {
     getNewFolder($folderName, data.id);
-    appendOption($folderName);
+    appendOption($folderName, data.id);
   })
   .catch(error => console.error('error: ', error))
 })
@@ -42,6 +42,7 @@ $('.popular-btn').on('click', function() {
   fetch(`/api/v1/folders/${currentFolder}/links`)
   .then(response => response.json())
   .then(data => sortByVisits(data))
+  .catch(error => console.log(error))
 })
 
 $('.sort-btn').on('click', function() {
@@ -50,14 +51,16 @@ $('.sort-btn').on('click', function() {
   fetch(`/api/v1/folders/${currentFolder}/links`)
   .then(response => response.json())
   .then(data => sortByDate(data))
+  .catch(error => console.log(error))
 })
 
 const getFolderLinks = (folderBtn, id) => {
   folderBtn.on('click', () => {
     currentFolder = id;
-    fetch(`/api/v1/folders/${id}/links`)
+    fetch(`/api/v1/folders/${currentFolder}/links`)
     .then(response => response.json())
     .then(data => displayFolderLinks(data))
+    .catch(error => console.log(error))
   })
 }
 
