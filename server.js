@@ -12,7 +12,13 @@ app.set('port', process.env.PORT || 3000)
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
+
+app.get('/', (request, response) => {
+  fs.readFile(`${__dirname}/index.html`, (error, file) => {
+    response.send(file)
+  })
+})
 
 app.get('/api/v1/folders', (request, response) => {
   database('folders').select()
@@ -85,9 +91,13 @@ app.post('/api/v1/links', (request, response) => {
     .catch(error => {
       console.error('error:', error);
     });
-})
-
-app.listen(3000)
+});
 
 
-module.exports = app
+
+app.listen(app.get('port'), () => {
+  console.log('app is listening on port 3000');
+});
+
+
+module.exports = app;
