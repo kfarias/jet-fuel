@@ -34,7 +34,7 @@ Mocha/Chai were used in the testing of this application.
 
 $ mocha
 
-##Deployment
+## Deployment
 
 [heroku](https://bstoroztestapp.herokuapp.com/)
 
