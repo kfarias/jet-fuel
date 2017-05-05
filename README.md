@@ -39,7 +39,7 @@ $ mocha
 [heroku](https://bstoroztestapp.herokuapp.com/)
 
 ## Design
-![wireframe](http://i.imgur.com/xBBrtMe.png)
+![wireframe](http://i.imgur.com/bp0Kim1.png)
 
 We focused our app heavily on the mobile view for the user and adapted that for the bigger screens. We wanted a very clean and straight forward look so the user could see all of the folders right away.
 
