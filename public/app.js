@@ -1,8 +1,6 @@
 $(document).ready(() => {
   getAllFolders();
-  fetch('api/v1/links')
-  .then(response => response.json())
-  .then(data => renderLinks(data))
+  getAllLinks();
 })
 
 $('.save-btn').on('click', function() {
@@ -30,7 +28,7 @@ $('.submit-btn').on('click', function(e) {
     'body': JSON.stringify({ longUrl: $url, folder_id: folderID, visits: 0 })
   })
   .then(response => response.json())
-  .then(data => console.log(data))
+  .then(data => data)
   .catch(error => console.error('error: ', error))
 })
 
@@ -92,4 +90,10 @@ const getNewFolder = (title, id) => {
   .then(response => response.json())
   .then(data => appendFolders(title, id))
   .catch(error => console.error('error: ', error))
+}
+
+const getAllLinks = () => {
+  fetch('api/v1/links')
+  .then(response => response.json())
+  .then(data => renderLinks(data))
 }
