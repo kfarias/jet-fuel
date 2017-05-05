@@ -17,6 +17,7 @@ $('.save-btn').on('click', function() {
     appendOption($folderName, data.id);
   })
   .catch(error => console.error('error: ', error))
+  clearFolderInput();
 })
 
 $('.submit-btn').on('click', function(e) {
@@ -129,4 +130,8 @@ const clearInput = () => {
   $('option:selected').prop('selected', function() {
     return this.defaultSelected;
   });
+}
+
+const clearFolderInput = () => {
+  $('.folder-input').val('');
 }
