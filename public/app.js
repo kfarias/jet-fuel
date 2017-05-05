@@ -29,7 +29,9 @@ $('.submit-btn').on('click', function(e) {
     'body': JSON.stringify({ longUrl: $url, folder_id: folderID, visits: 0 })
   })
   .then(response => response.json())
-  .then(data => data)
+  .then(data => {
+    data
+  })
   .catch(error => console.error('error: ', error))
   clearInput();
 })
