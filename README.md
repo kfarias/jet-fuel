@@ -36,7 +36,7 @@ $ mocha
 
 ## Deployment
 
-[heroku](https://bstoroztestapp.herokuapp.com/)
+[heroku](https://jetfuel-app.herokuapp.com/)
 
 ## Design
 ![wireframe](http://i.imgur.com/4nKV3Bf.png)
