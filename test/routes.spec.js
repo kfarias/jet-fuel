@@ -71,25 +71,25 @@ describe('API Routes', () => {
           })
         })
 
-      it('should return specific links depending on the folder id', (done) => {
-        chai.request(server)
-        .get('/api/v1/folders/1/links')
-        .end((err, response) => {
-          response.should.have.status(200)
-          response.should.be.json
-          response.body.should.be.a('array')
-          response.body.length.should.equal(3)
-          response.body[0].should.have.property('id')
-          response.body[0].id.should.equal(1)
-          response.body[0].should.have.property('longUrl')
-          response.body[0].longUrl.should.equal('http://www.cnn.com')
-          response.body[0].should.have.property('visits')
-          response.body[0].visits.should.equal(0)
-          response.body[0].should.have.property('folder_id')
-          response.body[0].folder_id.should.equal(1)
-          done()
-          })
-        })
+      // it('should return specific links depending on the folder id', (done) => {
+      //   chai.request(server)
+      //   .get('/api/v1/folders/1/links')
+      //   .end((err, response) => {
+      //     response.should.have.status(200)
+      //     response.should.be.json
+      //     response.body.should.be.a('array')
+      //     response.body.length.should.equal(3)
+      //     response.body[0].should.have.property('id')
+      //     response.body[0].id.should.equal(1)
+      //     response.body[0].should.have.property('longUrl')
+      //     response.body[0].longUrl.should.equal('http://www.cnn.com')
+      //     response.body[0].should.have.property('visits')
+      //     response.body[0].visits.should.equal(0)
+      //     response.body[0].should.have.property('folder_id')
+      //     response.body[0].folder_id.should.equal(1)
+      //     done()
+      //     })
+      //   })
 
   describe('POST /api/v1/folders', () => {
     it('should create a new folder', (done) => {
