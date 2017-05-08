@@ -15,4 +15,4 @@ deployment:
   production:
     branch: master
     heroku:
-      appname: jet-links
+      appname: bstoroztestapp
