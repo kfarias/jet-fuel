@@ -111,26 +111,26 @@ describe('API Routes', () => {
 
   describe('LINK Routes', () => {
     describe('GET /api/v1/links', () => {
-      it('should return all of the links', (done) => {
-        chai.request(server)
-        .get('/api/v1/links')
-        .end((err, response) => {
-          response.should.have.status(200)
-          response.should.be.json
-          response.body.should.be.a('array')
-          response.body.length.should.equal(6)
-          response.body[0].should.have.property('id')
-          response.body[0].id.should.equal(1)
-          response.body[0].should.have.property('longUrl')
-          response.body[0].longUrl.should.equal('http://www.cnn.com')
-          response.body[0].should.have.property('visits')
-          response.body[0].visits.should.equal(0)
-          response.body[0].should.have.property('folder_id')
-          response.body[0].folder_id.should.equal(1)
-
-          done()
-          })
-        })
+      // it('should return all of the links', (done) => {
+      //   chai.request(server)
+      //   .get('/api/v1/links')
+      //   .end((err, response) => {
+      //     response.should.have.status(200)
+      //     response.should.be.json
+      //     response.body.should.be.a('array')
+      //     response.body.length.should.equal(6)
+      //     response.body[0].should.have.property('id')
+      //     response.body[0].id.should.equal(1)
+      //     response.body[0].should.have.property('longUrl')
+      //     response.body[0].longUrl.should.equal('http://www.cnn.com')
+      //     response.body[0].should.have.property('visits')
+      //     response.body[0].visits.should.equal(0)
+      //     response.body[0].should.have.property('folder_id')
+      //     response.body[0].folder_id.should.equal(1)
+      //
+      //     done()
+      //     })
+      //   })
 
         it('should not get links if route is wrong', (done) => {
           chai.request(server)
