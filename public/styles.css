@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Galada|Open Sans');
+@import url('https://fonts.googleapis.com/css?family=Galada|Open Sans|Patua+One|Istok+Web');
 
 body {
   background-color: #f5faff;
@@ -41,7 +41,6 @@ a:hover {
 .url-wrap,
 .folder-wrap {
   display: flex;
-  border: 2px solid #e17f34;
   border-radius: 3px;
   width: 85%;
   max-width: 600px;
@@ -51,18 +50,21 @@ a:hover {
 .url-input {
   padding: 10px 5px;
   width: 80%;
+  border-radius: 3px 0 0 3px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19);
 }
 
 ::-webkit-input-placeholder {
   color: #555;
   font-size: 14px;
+  opacity: .75;
 }
 
 .submit-btn {
   width: 20%;
   padding: 15px 10px;
   background-color: #e17f34;
+  border-radius: 0 3px 3px 0;
   color: #fff;
   text-align: center;
   text-transform: uppercase;
@@ -77,21 +79,42 @@ a:hover {
   height: 43px;
   display: block;
   background-color: #fff;
-  border: 2px solid #e17f34;
+  border: none;
   color: #555;
   font-size: 14px;
+}
+
+.display-url {
+  padding: 20px 0;
+  background-color: #e17f34;
+  color: #F5FAFF;
+  font-family: 'Istok Web';
+  text-align: center;
+}
+
+.display-url p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.display-url a {
+  display: block;
+  margin: 0 0 0 10px;
+  font-size: 16px;
 }
 
 .main-content {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  background-color: #d2691e;
 }
 
 .link-list {
-  margin: 15px 0 0 0;
+  margin: 15px 0;
+  padding: 0 0 30px 0;
   background-color: rgba(21, 41, 78, 0.75);
-  height: 100vh;
 }
 
 .filter-options {
@@ -133,26 +156,53 @@ a:hover {
   font-family: 'Open Sans', sans-serif;
 }
 
+.link-icon {
+  height: 25px;
+  width: 25px;
+  margin: 0 10px 0 0;
+}
+
 .short-url {
+  display: flex;
+  align-items: center;
   background-color: #e17f34;
   color: #F5FAFF;
+  font-weight: bold;
 }
 
 .folders {
   width: 85%;
   margin: auto;
+  padding: 0 0 30px 0;
+}
+
+.button-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.folder-icon {
+  display: block;
+  margin: 0 5px;
+  height: 20px;
+  width: 20px;
 }
 
 .folder-name {
   width: 100%;
   margin: 8px 3px;
   padding: 5px 0;
-  display: block;
+  display: flex;
+  align-items: center;
   background-color: #e17f34;
   border-radius: 2px;
+  box-shadow: 0 1px 0 0;
   color: #fff;
   cursor: pointer;
   font-size: 16px;
+  width: 45%;
 }
 
 .folder-wrap {
@@ -164,6 +214,7 @@ a:hover {
   margin: 0;
   width: 80%;
   padding: 10px 5px;
+  border-radius: 3px 0 0 3px;
 }
 
 .save-btn {
@@ -171,6 +222,9 @@ a:hover {
   width: 20%;
   padding: 10px 5px;
   background-color: #e17f34;
+  border-radius: 0 3px 3px 0;
+  border-bottom: 1px solid;
+  /*box-shadow: 0 1px 0 0;*/
   color: #fff;
   cursor: pointer;
   text-transform: uppercase;

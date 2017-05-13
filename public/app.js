@@ -30,7 +30,7 @@ $('.submit-btn').on('click', function(e) {
     'body': JSON.stringify({ longUrl: $url, folder_id: folderID, visits: 0 })
   })
   .then(response => response.json())
-  .then(data => data)
+  .then(data => appendShortURL(data))
   .catch(error => console.error('error: ', error))
   clearInput();
 })
@@ -76,8 +76,8 @@ const displayFolders = (folders) => {
 }
 
 const appendFolders = (folderName, id) => {
-  const folderBtn = $(`<button class="folder-name">${folderName}</button>`)
-  $('.folders').append(folderBtn);
+  const folderBtn = $(`<button class="folder-name"><img class="folder-icon" src="./images/folder.svg"/>${folderName}</button>`)
+  $('.button-wrap').append(folderBtn);
   getFolderLinks(folderBtn, id)
 }
 
@@ -85,11 +85,15 @@ const renderLinks = (links) => {
   return links.map(linkCard => appendLinks(linkCard))
 }
 
+const appendShortURL = (data) => {
+  $('.short-link').append(`<a class="short-url" href="/jet.fuel/${data.id}" target="_blank">http://jet.fuel/${data.id}</a>`)
+}
+
 const appendLinks = (linkCard) => {
   let createdAt = linkCard.created_at.slice(0, 10)
   $('.link-list').append(`
     <article class="link-cards">
-      <a class="short-url" href="/jet.fuel/${linkCard.id}" target="_blank">http://jet.fuel/${linkCard.id}</a>
+      <a class="short-url" href="/jet.fuel/${linkCard.id}" target="_blank"><img class="link-icon" src="./images/link.svg" />http://jet.fuel/${linkCard.id}</a>
       <a href="${linkCard.longUrl}">${linkCard.longUrl}</a>
       <p>Visits: ${linkCard.visits}</p>
       <p>Created: ${createdAt}</p>
@@ -119,7 +123,7 @@ const getAllFolders = () => {
 }
 
 const getNewFolder = (title, id) => {
-  fetch(`api/v1/folders/${id}`)
+  fetch(`/api/v1/folders/${id}`)
   .then(response => response.json())
   .then(data => appendFolders(title, id))
   .catch(error => console.error('error: ', error))
