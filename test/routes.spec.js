@@ -127,7 +127,6 @@ describe('API Routes', () => {
           response.body[0].visits.should.equal(0)
           response.body[0].should.have.property('folder_id')
           response.body[0].folder_id.should.equal(1)
-
           done()
           })
         })
