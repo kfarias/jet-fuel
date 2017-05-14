@@ -112,9 +112,10 @@ a:hover {
 }
 
 .link-list {
-  margin: 15px 0;
+  margin: 15px 0 0 0;
   padding: 0 0 30px 0;
   background-color: rgba(21, 41, 78, 0.75);
+  min-height: 300px;
 }
 
 .filter-options {
@@ -191,6 +192,7 @@ a:hover {
 }
 
 .folder-name {
+  position: relative;
   width: 100%;
   margin: 8px 3px;
   padding: 5px 0;
@@ -203,6 +205,13 @@ a:hover {
   cursor: pointer;
   font-size: 16px;
   width: 45%;
+}
+
+.delete-folder {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  font-size: .75em;
 }
 
 .folder-wrap {
