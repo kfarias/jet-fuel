@@ -93,6 +93,23 @@ app.post('/api/v1/links', (request, response) => {
     });
 });
 
+app.delete('/api/v1/links/:id', (request, response) => {
+  const id = request.params.id;
+  database('links').where('id', id).del()
+  .then(() => response.sendStatus(200))
+  .catch(error => console.error('error :', error))
+})
+
+app.delete('/api/v1/folders/:id', (request, response) => {
+  const id = request.params.id;
+  database('links').where('folder_id', id).del()
+  .then(() => {
+    return database('folders').where('id', id).del()
+  })
+  .then(() => response.sendStatus(200))
+  .catch(error => console.error('error :', error))
+})
+
 
 
 app.listen(app.get('port'), () => {
