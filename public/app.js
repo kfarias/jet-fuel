@@ -35,6 +35,18 @@ $('.submit-btn').on('click', function(e) {
   clearInput();
 })
 
+$('.link-list').on('click', '.delete-link', function() {
+  let id = $(this).closest('.link-cards').attr('id')
+  deleteLink(id);
+  $(this).closest('.link-cards').remove();
+})
+
+$('.folders').on('click', '.delete-folder', function(e) {
+  e.stopPropagation()
+  let id = $(this).attr('id')
+  deleteFolder(id)
+})
+
 $('.popular-btn').on('click', function() {
   let linkCards = $('.link-cards')
   $('.link-list').children('.link-cards').remove()
@@ -76,7 +88,11 @@ const displayFolders = (folders) => {
 }
 
 const appendFolders = (folderName, id) => {
-  const folderBtn = $(`<button class="folder-name"><img class="folder-icon" src="./images/folder.svg"/>${folderName}</button>`)
+  const folderBtn = $(`
+    <button id="${id}" class="folder-name">
+      <img class="folder-icon" src="./images/folder.svg"/>${folderName}
+      <span id="${id}" class="delete-folder">X</span>
+    </button>`)
   $('.button-wrap').append(folderBtn);
   getFolderLinks(folderBtn, id)
 }
@@ -92,8 +108,9 @@ const appendShortURL = (data) => {
 const appendLinks = (linkCard) => {
   let createdAt = linkCard.created_at.slice(0, 10)
   $('.link-list').append(`
-    <article class="link-cards">
+    <article class="link-cards" id="${linkCard.id}">
       <a class="short-url" href="/jet.fuel/${linkCard.id}" target="_blank"><img class="link-icon" src="./images/link.svg" />http://jet.fuel/${linkCard.id}</a>
+      <button class="delete-link">Delete</button>
       <a href="${linkCard.longUrl}">${linkCard.longUrl}</a>
       <p>Visits: ${linkCard.visits}</p>
       <p>Created: ${createdAt}</p>
@@ -102,6 +119,25 @@ const appendLinks = (linkCard) => {
 
 const appendOption = (title, id) => {
   $('.folder-options').append(`<option id="${id}" value="${title}">${title}</option>`)
+}
+
+const deleteLink = (id) => {
+  fetch(`/api/v1/links/${id}`, {
+    method: 'DELETE'
+  })
+  .catch(error => console.error('error :', error))
+}
+
+const deleteFolder = (id) => {
+  fetch(`/api/v1/folders/${id}`, {
+    method: 'DELETE'
+  })
+  .then(response => {
+    $('.button-wrap').empty();
+    $('.link-list').empty();
+    getAllFolders()
+  })
+  .catch(error => console.error('error :', error))
 }
 
 const sortByVisits = (links) => {
